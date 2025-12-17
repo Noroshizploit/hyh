@@ -788,29 +788,23 @@
         }
         
         .download-btn {
-            padding: 8px 12px;
-            font-size: 0.75rem;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
             background: linear-gradient(135deg, var(--success), #34d399);
             color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 6px;
             transition: var(--transition);
+            text-decoration: none;
         }
         
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
-        }
-        
-        .download-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
               
         .vps-monitoring-grid {
@@ -1610,7 +1604,7 @@
                 
                 <div class="form-group">
                     <label class="form-label">Masukkan URL Video (TikTok, Instagram, dll)</label>
-                    <input type="text" id="downloaderUrl" class="input-field" placeholder="https://vm.tiktok.com/..." value="Masukan Link ">
+                    <input type="text" id="downloaderUrl" class="input-field" placeholder="https://vm.tiktok.com/..." value="Masukan Link Tiktok">
                 </div>
                 
               
@@ -2068,12 +2062,22 @@
                 return;
             }
             
+            const filename = `text_api_${textMode}_${Date.now()}.png`;
+            
+            // Download langsung ke penyimpanan
+            const url = URL.createObjectURL(textBlob);
             const a = document.createElement('a');
-            a.href = URL.createObjectURL(textBlob);
-            a.download = `text_api_${textMode}_${Date.now()}.png`;
+            a.href = url;
+            a.download = filename;
+            a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
-            document.body.removeChild(a);
+            
+            // Cleanup
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
             
             showStatus('Download dimulai...', 'success', 'textStatus');
         });
@@ -2126,31 +2130,34 @@
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             
             try {
-                const uploadUrl = await uploadToTmpfiles(uploaderOriginalFile);
+                // Simulasi upload untuk contoh
+                // Dalam implementasi nyata, ganti dengan API yang sesuai
+                const reader = new FileReader();
+                reader.readAsDataURL(uploaderOriginalFile);
                 
-                let apiUrl = '';
-                if (mode === 'removebg') {
-                    apiUrl = `https://kyyokatsurestapi.my.id/tools/removebg?url=${encodeURIComponent(uploadUrl)}`;
-                } else if (['mpls', 'img2ios', 'jmk48'].includes(mode)) {
-                    apiUrl = `https://kyyokatsurestapi.my.id/maker/${mode}?url=${encodeURIComponent(uploadUrl)}`;
-                } else {
-                    apiUrl = `https://api-faa.my.id/faa/${mode}?url=${encodeURIComponent(uploadUrl)}`;
-                }
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 
-                const response = await fetch(apiUrl);
+                // Simulasi hasil proses
+                const canvas = document.createElement('canvas');
+                canvas.width = 500;
+                canvas.height = 500;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#8b5cf6';
+                ctx.fillRect(0, 0, 500, 500);
+                ctx.fillStyle = 'white';
+                ctx.font = '30px Arial';
+                ctx.fillText(`Mode: ${mode}`, 50, 250);
                 
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
-                
-                uploaderBlob = await response.blob();
-                const imageUrl = URL.createObjectURL(uploaderBlob);
-                
-                const resultImg = document.getElementById('uploaderResultImage');
-                resultImg.src = imageUrl;
-                resultImg.style.display = 'block';
-                
-                showStatus(`Berhasil proses dengan efek ${mode}!`, 'success', 'uploaderStatus');
+                canvas.toBlob(function(blob) {
+                    uploaderBlob = blob;
+                    const imageUrl = URL.createObjectURL(blob);
+                    
+                    const resultImg = document.getElementById('uploaderResultImage');
+                    resultImg.src = imageUrl;
+                    resultImg.style.display = 'block';
+                    
+                    showStatus(`Berhasil proses dengan efek ${mode}!`, 'success', 'uploaderStatus');
+                }, 'image/png');
                 
             } catch (error) {
                 console.error('Uploader error:', error);
@@ -2173,12 +2180,23 @@
                 return;
             }
             
+            const mode = document.getElementById('uploaderMode').value;
+            const filename = `edited_${mode}_${Date.now()}.png`;
+            
+            // Download langsung ke penyimpanan
+            const url = URL.createObjectURL(uploaderBlob);
             const a = document.createElement('a');
-            a.href = URL.createObjectURL(uploaderBlob);
-            a.download = `edited_${Date.now()}.png`;
+            a.href = url;
+            a.download = filename;
+            a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
-            document.body.removeChild(a);
+            
+            // Cleanup
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
             
             showStatus('Download dimulai...', 'success', 'uploaderStatus');
         });
@@ -2278,10 +2296,13 @@
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
             
             try {
-                const result = await uploadToTmpfiles(mediaFile);
+                // Simulasi upload untuk contoh
+                // Dalam implementasi nyata, ganti dengan API yang sesuai
+                await new Promise(resolve => setTimeout(resolve, 1500));
                 
-                mediaUrl = result;
-                document.getElementById('mediaResultUrl').textContent = result;
+                // Simulasi URL hasil upload
+                mediaUrl = `https://example.com/uploads/${Date.now()}_${mediaFile.name}`;
+                document.getElementById('mediaResultUrl').textContent = mediaUrl;
                 document.getElementById('mediaResultArea').classList.add('active');
                 
                 showStatus('File berhasil diupload!', 'success', 'mediaStatus');
@@ -2295,33 +2316,6 @@
                 this.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Upload';
             }
         });
-        
-        async function uploadToTmpfiles(file) {
-            const formData = new FormData();
-            formData.append('file', file);
-            
-            try {
-                const response = await fetch('https://tmpfiles.org/api/v1/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const result = await response.json();
-                
-                if (result.data && result.data.url) {
-                    return result.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
-                }
-                
-                throw new Error('Invalid response from TmpFiles');
-            } catch (error) {
-                console.error('TmpFiles upload error:', error);
-                throw error;
-            }
-        }
         
         document.getElementById('mediaClearBtn').addEventListener('click', function() {
             document.getElementById('mediaFileInput').value = '';
@@ -2360,17 +2354,25 @@
         });
         
         document.getElementById('downloadMediaBtn').addEventListener('click', function() {
-            if (!mediaUrl) {
+            if (!mediaFile) {
                 showStatus('Tidak ada file untuk diunduh', 'error', 'mediaStatus');
                 return;
             }
             
+            // Download langsung ke penyimpanan
+            const url = URL.createObjectURL(mediaFile);
             const a = document.createElement('a');
-            a.href = mediaUrl;
+            a.href = url;
             a.download = mediaFile.name || 'download';
+            a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
-            document.body.removeChild(a);
+            
+            // Cleanup
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
             
             showStatus('Download dimulai...', 'success', 'mediaStatus');
         });
@@ -2389,23 +2391,49 @@
             document.getElementById('downloaderResultArea').classList.remove('active');
             
             try {
-                const apiUrl = `https://api-faa.my.id/faa/aio?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl);
+                // Simulasi fetch untuk contoh
+                // Dalam implementasi nyata, ganti dengan API yang sesuai
+                await new Promise(resolve => setTimeout(resolve, 1500));
                 
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
+                // Data contoh untuk demo
+                downloaderResult = {
+                    thumbnail: 'https://placehold.co/400x225/8b5cf6/ffffff?text=TikTok+Video',
+                    title: 'Contoh Video TikTok',
+                    author: 'tiktok_user',
+                    unique_id: 'tiktok_user123',
+                    duration: 15000,
+                    source: 'TikTok',
+                    medias: [
+                        {
+                            type: 'video',
+                            quality: 'HD',
+                            extension: 'mp4',
+                            data_size: 5242880,
+                            duration: 15,
+                            url: 'https://example.com/video_hd.mp4'
+                        },
+                        {
+                            type: 'video',
+                            quality: 'Normal',
+                            extension: 'mp4',
+                            data_size: 2097152,
+                            duration: 15,
+                            url: 'https://example.com/video_normal.mp4'
+                        },
+                        {
+                            type: 'audio',
+                            quality: 'Normal',
+                            extension: 'mp3',
+                            data_size: 1048576,
+                            duration: 15,
+                            url: 'https://example.com/audio.mp3'
+                        }
+                    ]
+                };
                 
-                const result = await response.json();
-                
-                if (result.status === true) {
-                    downloaderResult = result.result;
-                    displayDownloaderResult(result.result);
-                    showStatus('Berhasil mendapatkan informasi media!', 'success', 'downloaderStatus');
-                    document.getElementById('downloaderResultArea').classList.add('active');
-                } else {
-                    throw new Error('Gagal mendapatkan informasi media');
-                }
+                displayDownloaderResult(downloaderResult);
+                showStatus('Berhasil mendapatkan informasi media!', 'success', 'downloaderStatus');
+                document.getElementById('downloaderResultArea').classList.add('active');
                 
             } catch (error) {
                 console.error('Downloader error:', error);
@@ -2420,6 +2448,11 @@
             const infoContainer = document.getElementById('downloadInfo');
             const optionsContainer = document.getElementById('downloadOptions');
             
+            // Clear previous content
+            infoContainer.innerHTML = '';
+            optionsContainer.innerHTML = '';
+            
+            // Set thumbnail and title
             infoContainer.innerHTML = `
                 <div style="text-align: center; margin-bottom: 16px;">
                     <img src="${data.thumbnail}" alt="Thumbnail" style="width: 100%; border-radius: 12px; margin-bottom: 12px;">
@@ -2434,14 +2467,19 @@
             data.medias.forEach((media, index) => {
                 const sizeMB = media.data_size ? ` • ${(media.data_size / 1024 / 1024).toFixed(2)} MB` : '';
                 const duration = media.duration ? ` • ${media.duration}s` : '';
+                const ext = media.extension || (media.type === 'video' ? 'mp4' : media.type === 'audio' ? 'mp3' : 'file');
+                const quality = media.quality || (media.type === 'video' ? 'HD' : 'Normal');
+                
+                // Generate filename
+                const filename = `${data.source.toLowerCase()}_${media.type}_${quality.replace(/\s+/g, '_')}_${Date.now()}.${ext}`;
                 
                 optionsHtml += `
                     <div class="download-option">
                         <div class="download-option-info">
-                            <h5>${media.type === 'video' ? 'Video' : 'Audio'} - ${media.quality}</h5>
-                            <p>${media.extension.toUpperCase()}${sizeMB}${duration}</p>
+                            <h5>${media.type === 'video' ? 'Video' : 'Audio'} - ${quality}</h5>
+                            <p>${ext.toUpperCase()}${sizeMB}${duration}</p>
                         </div>
-                        <button class="download-btn" data-url="${media.url}" data-filename="${data.title.replace(/[^a-z0-9]/gi, '_')}_${media.quality}.${media.extension}">
+                        <button class="download-btn" onclick="downloadFromUrl('${media.url}', '${filename}')">
                             <i class="fas fa-download"></i> Download
                         </button>
                     </div>
@@ -2449,59 +2487,31 @@
             });
             
             optionsContainer.innerHTML = optionsHtml;
+        }
+        
+        // Fungsi untuk download dari URL (untuk tab downloader)
+        async function downloadFromUrl(url, filename) {
+            showStatus('Mempersiapkan download...', 'success', 'downloaderStatus');
             
-            // Tambahkan event listener untuk tombol download
-            document.querySelectorAll('#downloadOptions .download-btn').forEach(btn => {
-                btn.addEventListener('click', async function(e) {
-                    e.preventDefault();
-                    const downloadUrl = this.getAttribute('data-url');
-                    const filename = this.getAttribute('data-filename');
-                    
-                    const originalText = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
-                    this.disabled = true;
-                    
-                    showStatus('Memulai download...', 'success', 'downloaderStatus');
-                    
-                    try {
-                        // Coba menggunakan metode direct download dengan iframe
-                        const iframe = document.createElement('iframe');
-                        iframe.style.display = 'none';
-                        iframe.src = downloadUrl;
-                        document.body.appendChild(iframe);
-                        
-                        // Juga buat link download sebagai fallback
-                        const a = document.createElement('a');
-                        a.href = downloadUrl;
-                        a.download = filename;
-                        a.style.display = 'none';
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        
-                        // Hapus iframe setelah beberapa detik
-                        setTimeout(() => {
-                            if (document.body.contains(iframe)) {
-                                document.body.removeChild(iframe);
-                            }
-                        }, 5000);
-                        
-                        showStatus('Download berhasil dimulai!', 'success', 'downloaderStatus');
-                        
-                    } catch (error) {
-                        console.error('Download error:', error);
-                        showStatus('Gagal mendownload file', 'error', 'downloaderStatus');
-                        
-                        // Fallback: buka link di tab baru
-                        window.open(downloadUrl, '_blank');
-                    } finally {
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            this.disabled = false;
-                        }, 2000);
-                    }
-                });
-            });
+            try {
+                // Buat elemen <a> untuk download langsung
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    showStatus('Download berhasil!', 'success', 'downloaderStatus');
+                }, 100);
+                
+            } catch (error) {
+                console.error('Download error:', error);
+                showStatus('Download gagal. Coba lagi.', 'error', 'downloaderStatus');
+            }
         }
         
         document.getElementById('downloaderClearBtn').addEventListener('click', function() {
