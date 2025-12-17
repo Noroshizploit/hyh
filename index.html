@@ -786,6 +786,27 @@
             color: var(--muted);
             font-size: 0.7rem;
         }
+        
+        .download-btn {
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--success), #34d399);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+        }
               
         .vps-monitoring-grid {
             display: flex;
@@ -2394,7 +2415,6 @@
             const infoContainer = document.getElementById('downloadInfo');
             const optionsContainer = document.getElementById('downloadOptions');
             
-           
             infoContainer.innerHTML = `
                 <div style="text-align: center; margin-bottom: 16px;">
                     <img src="${data.thumbnail}" alt="Thumbnail" style="width: 100%; border-radius: 12px; margin-bottom: 12px;">
@@ -2416,14 +2436,57 @@
                             <h5>${media.type === 'video' ? 'Video' : 'Audio'} - ${media.quality}</h5>
                             <p>${media.extension.toUpperCase()}${sizeMB}${duration}</p>
                         </div>
-                        <a href="${media.url}" target="_blank" class="btn success" style="padding: 8px 12px; font-size: 0.75rem; text-decoration: none;">
+                        <button class="download-btn" data-url="${media.url}" data-filename="${data.title.replace(/[^a-z0-9]/gi, '_')}_${media.quality}.${media.extension}">
                             <i class="fas fa-download"></i> Download
-                        </a>
+                        </button>
                     </div>
                 `;
             });
             
             optionsContainer.innerHTML = optionsHtml;
+            
+          
+            document.querySelectorAll('#downloadOptions .download-btn').forEach(btn => {
+                btn.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    const downloadUrl = this.getAttribute('data-url');
+                    const filename = this.getAttribute('data-filename');
+                    
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+                    this.disabled = true;
+                    
+                    try {
+                        const response = await fetch(downloadUrl);
+                        const blob = await response.blob();
+                        const url = window.URL.createObjectURL(blob);
+                        
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                        
+                        showStatus('Download berhasil dimulai!', 'success', 'downloaderStatus');
+                    } catch (error) {
+                        console.error('Download error:', error);
+                        showStatus('Gagal mendownload file', 'error', 'downloaderStatus');
+                        
+                       
+                        const a = document.createElement('a');
+                        a.href = downloadUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    } finally {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }
+                });
+            });
         }
         
         document.getElementById('downloaderClearBtn').addEventListener('click', function() {
