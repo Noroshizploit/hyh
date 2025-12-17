@@ -807,6 +807,11 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
         }
+        
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
               
         .vps-monitoring-grid {
             display: flex;
@@ -1605,7 +1610,7 @@
                 
                 <div class="form-group">
                     <label class="form-label">Masukkan URL Video (TikTok, Instagram, dll)</label>
-                    <input type="text" id="downloaderUrl" class="input-field" placeholder="https://vm.tiktok.com/..." value="Masukan Link Tiktok">
+                    <input type="text" id="downloaderUrl" class="input-field" placeholder="https://vm.tiktok.com/..." value="Masukan Link ">
                 </div>
                 
               
@@ -2445,7 +2450,7 @@
             
             optionsContainer.innerHTML = optionsHtml;
             
-          
+            // Tambahkan event listener untuk tombol download
             document.querySelectorAll('#downloadOptions .download-btn').forEach(btn => {
                 btn.addEventListener('click', async function(e) {
                     e.preventDefault();
@@ -2456,34 +2461,44 @@
                     this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
                     this.disabled = true;
                     
+                    showStatus('Memulai download...', 'success', 'downloaderStatus');
+                    
                     try {
-                        const response = await fetch(downloadUrl);
-                        const blob = await response.blob();
-                        const url = window.URL.createObjectURL(blob);
+                        // Coba menggunakan metode direct download dengan iframe
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = downloadUrl;
+                        document.body.appendChild(iframe);
                         
+                        // Juga buat link download sebagai fallback
                         const a = document.createElement('a');
-                        a.href = url;
+                        a.href = downloadUrl;
                         a.download = filename;
+                        a.style.display = 'none';
                         document.body.appendChild(a);
                         a.click();
-                        window.URL.revokeObjectURL(url);
                         document.body.removeChild(a);
                         
+                        // Hapus iframe setelah beberapa detik
+                        setTimeout(() => {
+                            if (document.body.contains(iframe)) {
+                                document.body.removeChild(iframe);
+                            }
+                        }, 5000);
+                        
                         showStatus('Download berhasil dimulai!', 'success', 'downloaderStatus');
+                        
                     } catch (error) {
                         console.error('Download error:', error);
                         showStatus('Gagal mendownload file', 'error', 'downloaderStatus');
                         
-                       
-                        const a = document.createElement('a');
-                        a.href = downloadUrl;
-                        a.download = filename;
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
+                        // Fallback: buka link di tab baru
+                        window.open(downloadUrl, '_blank');
                     } finally {
-                        this.innerHTML = originalText;
-                        this.disabled = false;
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.disabled = false;
+                        }, 2000);
                     }
                 });
             });
