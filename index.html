@@ -749,6 +749,120 @@
             color: var(--text);
         }
                 
+        /* Downloader Styles - Updated for Rext-style */
+        .downloader-result {
+            display: none;
+        }
+        
+        .downloader-result.active {
+            display: block;
+        }
+        
+        .media-info-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .media-thumbnail {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            max-height: 200px;
+            object-fit: cover;
+        }
+        
+        .media-title {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .media-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+        
+        .meta-item i {
+            font-size: 0.6rem;
+        }
+        
+        .quality-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .quality-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 12px;
+            transition: var(--transition);
+        }
+        
+        .quality-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .quality-info {
+            flex: 1;
+        }
+        
+        .quality-name {
+            font-size: 0.8rem;
+            color: var(--text);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        
+        .quality-details {
+            display: flex;
+            gap: 12px;
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+        
+        .quality-action {
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .quality-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+        
         .download-options {
             display: flex;
             flex-direction: column;
@@ -787,14 +901,15 @@
             font-size: 0.7rem;
         }
               
-        .vps-monitoring-grid {
+        /* Website Monitoring Styles */
+        .website-monitoring-grid {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin-top: 16px;
         }
         
-        .vps-card {
+        .website-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
@@ -804,20 +919,20 @@
             position: relative;
         }
         
-        .vps-card:hover {
+        .website-card:hover {
             border-color: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px var(--primary-glow);
         }
         
-        .vps-header {
+        .website-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 14px;
         }
         
-        .vps-name {
+        .website-name {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -826,7 +941,7 @@
             color: var(--text);
         }
         
-        .vps-status {
+        .website-status {
             display: flex;
             align-items: center;
             gap: 4px;
@@ -848,7 +963,7 @@
             border: 1px solid rgba(239, 68, 68, 0.3);
         }
         
-        .status-loading {
+        .status-slow {
             background: rgba(245, 158, 11, 0.1);
             color: var(--warning);
             border: 1px solid rgba(245, 158, 11, 0.3);
@@ -870,7 +985,7 @@
             background-color: var(--danger);
         }
         
-        .status-loading .status-indicator {
+        .status-slow .status-indicator {
             background-color: var(--warning);
             animation: pulse 1.5s infinite;
         }
@@ -880,11 +995,11 @@
             50% { opacity: 0.5; }
         }
         
-        .vps-details {
+        .website-details {
             margin-bottom: 16px;
         }
         
-        .vps-specs {
+        .website-specs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
@@ -935,19 +1050,19 @@
             transition: width 1s ease;
         }
         
-        .cpu-progress {
+        .uptime-progress {
             background: linear-gradient(90deg, var(--primary), #8b5cf6);
         }
         
-        .ram-progress {
+        .response-progress {
             background: linear-gradient(90deg, #3b82f6, #60a5fa);
         }
         
-        .disk-progress {
+        .load-progress {
             background: linear-gradient(90deg, #10b981, #34d399);
         }
         
-        .vps-actions {
+        .website-actions {
             display: flex;
             gap: 8px;
             margin-top: 16px;
@@ -968,41 +1083,41 @@
             gap: 6px;
         }
         
-        .action-btn.restart {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        
-        .action-btn.stop {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-        
-        .action-btn.ssh {
+        .action-btn.visit {
             background: rgba(139, 92, 246, 0.1);
             color: var(--primary);
             border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .action-btn.ping {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .action-btn.details {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
         
         .action-btn:hover {
             transform: translateY(-2px);
         }
         
-        .action-btn.restart:hover {
-            background: rgba(245, 158, 11, 0.2);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
-        }
-        
-        .action-btn.stop:hover {
-            background: rgba(239, 68, 68, 0.2);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
-        }
-        
-        .action-btn.ssh:hover {
+        .action-btn.visit:hover {
             background: rgba(139, 92, 246, 0.2);
             box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+        }
+        
+        .action-btn.ping:hover {
+            background: rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+        
+        .action-btn.details:hover {
+            background: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
         }
               
         .server-info-panel {
@@ -1179,12 +1294,22 @@
                 flex-direction: column;
             }
             
-            .vps-specs {
+            .website-specs {
                 grid-template-columns: 1fr;
             }
             
             .info-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .quality-option {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .quality-action {
+                align-self: flex-end;
             }
         }
         
@@ -1579,18 +1704,53 @@
                  
             <div id="downloader-tab" class="tab-content">
                 <h2 class="section-title">
-                    <i class="fas fa-download"></i>  Downloader
+                    <i class="fas fa-download"></i> Downloader
                 </h2>
                 
                 <div class="form-group">
-                    <label class="form-label">Masukkan URL Video (TikTok, Instagram, dll)</label>
-                    <input type="text" id="downloaderUrl" class="input-field" placeholder="https://vm.tiktok.com/..." value="Masukan Link Tiktok">
+                    <label class="form-label">Masukkan URL (TikTok, Instagram, YouTube, dll)</label>
+                    <input type="text" id="downloaderUrl" class="input-field" placeholder="https://vm.tiktok.com/...">
                 </div>
                 
+                <!-- Platform Selection -->
+                <div class="mode-grid" id="platformSelection">
+                    <div class="mode-card active" data-platform="auto">
+                        <i class="fas fa-robot"></i>
+                        <h4>Auto Detect</h4>
+                        <p>Deteksi otomatis platform</p>
+                    </div>
+                    <div class="mode-card" data-platform="tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        <h4>TikTok</h4>
+                        <p>Download video TikTok</p>
+                    </div>
+                    <div class="mode-card" data-platform="instagram">
+                        <i class="fab fa-instagram"></i>
+                        <h4>Instagram</h4>
+                        <p>Download video/IGTV</p>
+                    </div>
+                    <div class="mode-card" data-platform="youtube">
+                        <i class="fab fa-youtube"></i>
+                        <h4>YouTube</h4>
+                        <p>Download video YouTube</p>
+                    </div>
+                </div>
+                
+                <!-- Download Options -->
+                <div class="form-group">
+                    <label class="form-label">Kualitas Download</label>
+                    <select id="downloadQuality" class="select-field">
+                        <option value="best">Kualitas Terbaik</option>
+                        <option value="720">720p HD</option>
+                        <option value="480">480p</option>
+                        <option value="360">360p</option>
+                        <option value="audio">Audio Saja</option>
+                    </select>
+                </div>
               
                 <div class="btn-group">
                     <button id="downloaderFetchBtn" class="btn primary">
-                        <i class="fas fa-search"></i> Download 
+                        <i class="fas fa-search"></i> Cari Media
                     </button>
                     <button id="downloaderClearBtn" class="btn danger">
                         <i class="fas fa-trash"></i> Clear
@@ -1599,22 +1759,50 @@
               
                 <div class="status" id="downloaderStatus"></div>
                 
-               
-                <div class="result-area" id="downloaderResultArea">
-                    <div class="download-info" id="downloadInfo">
-                      
+                <!-- Downloader Result Area -->
+                <div class="downloader-result" id="downloaderResult">
+                    <div class="media-info-card">
+                        <img id="downloaderThumbnail" class="media-thumbnail" src="" alt="Thumbnail">
+                        <div class="media-title" id="downloaderTitle">Judul Media</div>
+                        
+                        <div class="media-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-user"></i>
+                                <span id="downloaderAuthor">-</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span id="downloaderDuration">-</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-video"></i>
+                                <span id="downloaderResolution">-</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-database"></i>
+                                <span id="downloaderSize">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="quality-selector" id="qualitySelector">
+                            <!-- Quality options will be dynamically added here -->
+                        </div>
                     </div>
                     
-                    <div class="download-options" id="downloadOptions">
-                    
+                    <!-- Download History -->
+                    <div class="portfolio-projects">
+                        <div class="project-card">
+                            <h4><i class="fas fa-history"></i> Download Terakhir</h4>
+                            <div id="downloadHistory"></div>
+                        </div>
                     </div>
                 </div>
                 
-              
+                <!-- Default Content -->
                 <div class="portfolio-projects" style="margin-top: 20px;">
                     <div class="project-card">
-                        <h4><i class="fas fa-download"></i> Downloader</h4>
-                        <p>Download video dari berbagai platform seperti TikTok, Instagram, YouTube Spotify,, dan lainnya dengan kualitas berbeda.</p>
+                        <h4><i class="fas fa-download"></i> Multi-Platform Downloader</h4>
+                        <p>Download video dari TikTok, Instagram, YouTube, Facebook, Twitter, dan platform lainnya dengan mudah.</p>
                         <div class="project-tech">
                             <span class="tech-tag">TikTok</span>
                             <span class="tech-tag">Instagram</span>
@@ -1623,12 +1811,12 @@
                     </div>
                     
                     <div class="project-card">
-                        <h4><i class="fas fa-video"></i> Multiple Qualities</h4>
-                        <p>Dapatkan video dalam berbagai kualitas: HD tanpa watermark, tanpa watermark, dan dengan watermark.</p>
+                        <h4><i class="fas fa-bolt"></i> Cepat & Efisien</h4>
+                        <p>Proses download yang cepat dengan multiple server backup untuk kecepatan maksimal.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">HD</span>
-                            <span class="tech-tag">No Watermark</span>
-                            <span class="tech-tag">Audio</span>
+                            <span class="tech-tag">Fast</span>
+                            <span class="tech-tag">Efficient</span>
+                            <span class="tech-tag">Reliable</span>
                         </div>
                     </div>
                 </div>
@@ -1636,82 +1824,70 @@
             
             <div id="tools-tab" class="tab-content">
                 <h2 class="section-title">
-                    <i class="fas fa-server"></i>Server Monitoring
+                    <i class="fas fa-server"></i>Website Monitoring
                 </h2>
                 
-              
-                <div class="vps-monitoring-grid" id="vpsMonitoringGrid">
-                   
+                <!-- Website Monitoring Grid -->
+                <div class="website-monitoring-grid" id="websiteMonitoringGrid">
+                    <!-- Website cards will be dynamically added here -->
                 </div>
                 
-             
+                <!-- Server Info Panel -->
                 <div class="server-info-panel">
                     <h4 style="color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-info-circle"></i> Server Information
+                        <i class="fas fa-info-circle"></i> Monitoring Information
                     </h4>
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-label">
-                                <i class="fas fa-network-wired"></i> Servers
+                                <i class="fas fa-globe"></i> Websites
                             </div>
-                            <div class="info-value" id="totalServers">3</div>
+                            <div class="info-value" id="totalWebsites">0</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">
                                 <i class="fas fa-signal"></i> Average Uptime
                             </div>
-                            <div class="info-value" id="averageUptime">99.8%</div>
+                            <div class="info-value" id="averageUptime">0%</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">
-                                <i class="fas fa-memory"></i> Total RAM
+                                <i class="fas fa-clock"></i> Avg Response Time
                             </div>
-                            <div class="info-value" id="totalRAM">12 GB</div>
+                            <div class="info-value" id="avgResponseTime">0ms</div>
                         </div>
                         <div class="info-item">
                             <div class="info-label">
-                                <i class="fas fa-hdd"></i> Total Storage
+                                <i class="fas fa-shield-alt"></i> SSL Expiry
                             </div>
-                            <div class="info-value" id="totalStorage">250 GB</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">
-                                <i class="fas fa-microchip"></i> Total CPU Cores
-                            </div>
-                            <div class="info-value" id="totalCPUCores">8</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">
-                                <i class="fas fa-globe"></i> Server Locations
-                            </div>
-                            <div class="info-value" id="serverLocations">3 Countries</div>
+                            <div class="info-value" id="sslExpiry">-</div>
                         </div>
                     </div>
                     
-                    <button id="refreshServersBtn" class="refresh-btn">
-                        <i class="fas fa-sync-alt"></i> Refresh Server Status
+                    <button id="refreshWebsitesBtn" class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh All Websites
                     </button>
                 </div>
                 
-              
+                <!-- Monitoring Statistics -->
                 <div class="portfolio-projects" style="margin-top: 20px;">
                     <div class="project-card">
-                        <h4><i class="fas fa-tachometer-alt"></i> Real-time Server Monitoring</h4>
-                        <p>Monitor status server secara real-time dengan informasi penggunaan CPU, RAM, Disk, dan jaringan.</p>
+                        <h4><i class="fas fa-tachometer-alt"></i> Real-time Website Monitoring</h4>
+                        <p>Monitor status website secara real-time dengan informasi uptime, response time, dan performa.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Server</span>
-                            <span class="tech-tag">Monitoring</span>
+                            <span class="tech-tag">Uptime</span>
+                            <span class="tech-tag">Performance</span>
                             <span class="tech-tag">Real-time</span>
                         </div>
                     </div>
                     
                     <div class="project-card">
-                        <h4><i class="fas fa-shield-alt"></i> Server Security</h4>
-                        <p>Semua server dilengkapi dengan firewall, SSL, dan sistem keamanan terbaru untuk perlindungan maksimal.</p>
+                        <h4><i class="fas fa-chart-line"></i> Performance Analytics</h4>
+                        <p>Analisis performa website dengan metrik detil seperti load time, server response, dan availability.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Security</span>
-                            <span class="tech-tag">Firewall</span>
-                            <span class="tech-tag">SSL</span>
+                            <span class="tech-tag">Analytics</span>
+                            <span class="tech-tag">Metrics</span>
+                            <span class="tech-tag">Monitoring</span>
                         </div>
                     </div>
                 </div>
@@ -1749,7 +1925,7 @@
                         <li><strong>Text-to-Image API Platform</strong> - Mengembangkan 4 API berbeda untuk generasi gambar dari teks</li>
                         <li><strong>AI Image Editor</strong> - Membangun platform dengan 40+ efek transformasi gambar berbasis AI</li>
                         <li><strong>AIO Downloader</strong> - Sistem download video dari berbagai platform dengan multiple quality</li>
-                        <li><strong>Server Monitoring Tools</strong> - Real-time server ping dan status monitoring</li>
+                        <li><strong>Website Monitoring Tools</strong> - Real-time website uptime dan status monitoring</li>
                     </ul>
                     
                     <h3 style="color: var(--text); margin-bottom: 12px; margin-top: 24px;"> Achievements</h3>
@@ -1809,7 +1985,7 @@
     </div>
 
     <script>
-        // Variabel global
+        // Variables
         let textMode = 'aqul';
         let textBlob = null;
         let uploaderBlob = null;
@@ -1818,8 +1994,10 @@
         let mediaUrl = '';
         let mediaType = 'image';
         let downloaderResult = null;
+        let currentPlatform = 'auto';
+        let downloadHistory = [];
         
-        // API endpoints
+        // Text APIs
         const textApis = {
             'aqul': 'https://aqul-brat.hf.space/?text=',
             'ustad': 'https://api.taka.my.id/pak-ustadv2?text=',
@@ -1827,53 +2005,69 @@
             'iqc': 'https://api-faa.my.id/faa/iqc?prompt='
         };
         
-        // Server data
-        const vpsServers = [
+        // Downloader APIs for different platforms
+        const downloaderApis = {
+            'tiktok': 'https://api-faa.my.id/faa/tiktok?url=',
+            'instagram': 'https://api-faa.my.id/faa/instagram?url=',
+            'youtube': 'https://api-faa.my.id/faa/youtube?url=',
+            'facebook': 'https://api-faa.my.id/faa/facebook?url=',
+            'twitter': 'https://api-faa.my.id/faa/twitter?url=',
+            'aio': 'https://api-faa.my.id/faa/aio?url='
+        };
+        
+        // Website Monitoring Data
+        const websites = [
             {
-                id: 'vps1',
-                name: 'Production Server',
+                id: 'site1',
+                name: 'KyyForseken API',
+                url: 'https://api-faa.my.id',
                 status: 'online',
-                location: 'Singapore',
-                provider: 'DigitalOcean',
-                cpu: { used: 45, total: 100, cores: 4 },
-                ram: { used: 3.2, total: 8, unit: 'GB' },
-                disk: { used: 45, total: 100, unit: 'GB' },
-                uptime: '15 days',
-                ip: '104.28.14.12',
-                os: 'Ubuntu 22.04',
-                lastBackup: '2025-02-10'
+                uptime: 99.8,
+                responseTime: 120,
+                sslExpiry: '2025-12-31',
+                loadTime: 1.2,
+                lastChecked: 'Just now',
+                description: 'Main API server for all services'
             },
             {
-                id: 'vps2',
-                name: 'API Gateway',
+                id: 'site2',
+                name: 'GitHub Portfolio',
+                url: 'https://github.com/KyyNephtys',
                 status: 'online',
-                location: 'Germany',
-                provider: 'Linode',
-                cpu: { used: 32, total: 100, cores: 2 },
-                ram: { used: 1.8, total: 4, unit: 'GB' },
-                disk: { used: 28, total: 80, unit: 'GB' },
-                uptime: '30 days',
-                ip: '172.105.64.18',
-                os: 'Debian 11',
-                lastBackup: '2025-02-12'
+                uptime: 99.9,
+                responseTime: 85,
+                sslExpiry: '2026-06-30',
+                loadTime: 0.8,
+                lastChecked: '2 minutes ago',
+                description: 'Code repository and portfolio'
             },
             {
-                id: 'vps3',
-                name: 'Database Server',
-                status: 'loading',
-                location: 'USA',
-                provider: 'Vultr',
-                cpu: { used: 68, total: 100, cores: 8 },
-                ram: { used: 6.5, total: 12, unit: 'GB' },
-                disk: { used: 78, total: 150, unit: 'GB' },
-                uptime: '8 days',
-                ip: '45.76.221.39',
-                os: 'CentOS 8',
-                lastBackup: '2025-02-08'
+                id: 'site3',
+                name: 'YouTube Channel',
+                url: 'https://www.youtube.com/@kayeyeFF',
+                status: 'online',
+                uptime: 99.5,
+                responseTime: 150,
+                sslExpiry: '2025-11-15',
+                loadTime: 1.5,
+                lastChecked: '5 minutes ago',
+                description: 'Content creation channel'
+            },
+            {
+                id: 'site4',
+                name: 'TikTok Profile',
+                url: 'https://tiktok.com/@kyyforseken',
+                status: 'slow',
+                uptime: 98.2,
+                responseTime: 250,
+                sslExpiry: '2025-09-20',
+                loadTime: 2.1,
+                lastChecked: '10 minutes ago',
+                description: 'Social media presence'
             }
         ];
         
-        // Fungsi untuk membuat snowflakes
+        // Create snowflakes
         function createSnowflakes() {
             const snowflakesContainer = document.getElementById('snowflakes');
             const snowflakeCount = 30;
@@ -1947,14 +2141,17 @@
                 
                 clearStatusMessages();
                 document.querySelector('.content').scrollTop = 0;
-               
+                
+                // Initialize specific tab content
                 if (tabId === 'tools') {
-                    initializeVPSMonitoring();
+                    initializeWebsiteMonitoring();
+                } else if (tabId === 'downloader') {
+                    loadDownloadHistory();
                 }
             });
         });
         
-        // Text API mode selection
+        // Text mode selection
         document.querySelectorAll('#textModeSelection .mode-card').forEach(card => {
             card.addEventListener('click', function() {
                 const mode = this.getAttribute('data-mode');
@@ -1986,6 +2183,19 @@
                 };
                 
                 document.getElementById('mediaFileInput').accept = acceptMap[type] || '*';
+            });
+        });
+        
+        // Platform selection for downloader
+        document.querySelectorAll('#platformSelection .mode-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const platform = this.getAttribute('data-platform');
+                currentPlatform = platform;
+                
+                document.querySelectorAll('#platformSelection .mode-card').forEach(c => {
+                    c.classList.remove('active');
+                });
+                this.classList.add('active');
             });
         });
         
@@ -2043,11 +2253,9 @@
                 return;
             }
             
-            // Langsung download tanpa preview
             const a = document.createElement('a');
             a.href = URL.createObjectURL(textBlob);
             a.download = `text_api_${textMode}_${Date.now()}.png`;
-            a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -2103,44 +2311,40 @@
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             
             try {
-                // Langsung proses dan download tanpa preview
-                const formData = new FormData();
-                formData.append('file', uploaderOriginalFile);
+                const uploadUrl = await uploadToTmpfiles(uploaderOriginalFile);
                 
                 let apiUrl = '';
                 if (mode === 'removebg') {
-                    apiUrl = 'https://kyyokatsurestapi.my.id/tools/removebg';
+                    apiUrl = `https://kyyokatsurestapi.my.id/tools/removebg?url=${encodeURIComponent(uploadUrl)}`;
                 } else if (['mpls', 'img2ios', 'jmk48'].includes(mode)) {
-                    apiUrl = `https://kyyokatsurestapi.my.id/maker/${mode}`;
+                    apiUrl = `https://kyyokatsurestapi.my.id/maker/${mode}?url=${encodeURIComponent(uploadUrl)}`;
                 } else {
-                    apiUrl = `https://api-faa.my.id/faa/${mode}`;
+                    apiUrl = `https://api-faa.my.id/faa/${mode}?url=${encodeURIComponent(uploadUrl)}`;
                 }
                 
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    body: formData
-                });
+                const response = await fetch(apiUrl);
                 
                 if (!response.ok) {
                     throw new Error(`API Error: ${response.status}`);
                 }
                 
                 uploaderBlob = await response.blob();
+                const imageUrl = URL.createObjectURL(uploaderBlob);
                 
-                // Langsung download
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(uploaderBlob);
-                a.download = `edited_${mode}_${Date.now()}.png`;
-                a.style.display = 'none';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                const resultImg = document.getElementById('uploaderResultImage');
+                resultImg.src = imageUrl;
+                resultImg.style.display = 'block';
                 
-                showStatus(`Berhasil proses dan download dengan efek ${mode}!`, 'success', 'uploaderStatus');
+                showStatus(`Berhasil proses dengan efek ${mode}!`, 'success', 'uploaderStatus');
                 
             } catch (error) {
                 console.error('Uploader error:', error);
                 showStatus(`Gagal proses: ${error.message}`, 'error', 'uploaderStatus');
+                
+                const mockImage = `https://via.placeholder.com/400x300/8b5cf6/ffffff?text=${mode}+Effect`;
+                const resultImg = document.getElementById('uploaderResultImage');
+                resultImg.src = mockImage;
+                resultImg.style.display = 'block';
             } finally {
                 document.getElementById('uploaderLoading').classList.remove('active');
                 this.disabled = false;
@@ -2157,7 +2361,6 @@
             const a = document.createElement('a');
             a.href = URL.createObjectURL(uploaderBlob);
             a.download = `edited_${Date.now()}.png`;
-            a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -2176,7 +2379,7 @@
             showStatus('Berhasil direset!', 'success', 'uploaderStatus');
         });
         
-        // Media functions
+        // Media upload functions
         document.getElementById('mediaFileInput').addEventListener('change', function(e) {
             if (!this.files.length) return;
             
@@ -2350,7 +2553,6 @@
             const a = document.createElement('a');
             a.href = mediaUrl;
             a.download = mediaFile.name || 'download';
-            a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -2358,7 +2560,7 @@
             showStatus('Download dimulai...', 'success', 'mediaStatus');
         });
         
-        // Downloader functions
+        // Downloader functions (Rext-style)
         document.getElementById('downloaderFetchBtn').addEventListener('click', async function() {
             const url = document.getElementById('downloaderUrl').value.trim();
             
@@ -2369,10 +2571,17 @@
             
             this.disabled = true;
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching...';
-            document.getElementById('downloaderResultArea').classList.remove('active');
+            document.getElementById('downloaderResult').classList.remove('active');
             
             try {
-                const apiUrl = `https://api-faa.my.id/faa/aio?url=${encodeURIComponent(url)}`;
+                // Determine which API to use
+                let apiToUse = 'aio'; // Auto-detect by default
+                
+                if (currentPlatform !== 'auto') {
+                    apiToUse = currentPlatform;
+                }
+                
+                const apiUrl = downloaderApis[apiToUse] + encodeURIComponent(url);
                 const response = await fetch(apiUrl);
                 
                 if (!response.ok) {
@@ -2381,11 +2590,14 @@
                 
                 const result = await response.json();
                 
-                if (result.status === true) {
-                    downloaderResult = result.result;
-                    displayDownloaderResult(result.result);
+                if (result.status === true || result.success === true) {
+                    downloaderResult = result;
+                    displayDownloaderResult(result);
                     showStatus('Berhasil mendapatkan informasi media!', 'success', 'downloaderStatus');
-                    document.getElementById('downloaderResultArea').classList.add('active');
+                    document.getElementById('downloaderResult').classList.add('active');
+                    
+                    // Add to download history
+                    addToDownloadHistory(url, result);
                 } else {
                     throw new Error('Gagal mendapatkan informasi media');
                 }
@@ -2393,153 +2605,309 @@
             } catch (error) {
                 console.error('Downloader error:', error);
                 showStatus(`Gagal: ${error.message}`, 'error', 'downloaderStatus');
+                
+                // Show mock data for demo
+                displayMockDownloaderResult(url);
+                document.getElementById('downloaderResult').classList.add('active');
             } finally {
                 this.disabled = false;
-                this.innerHTML = '<i class="fas fa-search"></i> Fetch Info';
+                this.innerHTML = '<i class="fas fa-search"></i> Cari Media';
             }
         });
         
         function displayDownloaderResult(data) {
-            const infoContainer = document.getElementById('downloadInfo');
-            const optionsContainer = document.getElementById('downloadOptions');
+            const thumbnail = document.getElementById('downloaderThumbnail');
+            const title = document.getElementById('downloaderTitle');
+            const author = document.getElementById('downloaderAuthor');
+            const duration = document.getElementById('downloaderDuration');
+            const resolution = document.getElementById('downloaderResolution');
+            const size = document.getElementById('downloaderSize');
+            const qualitySelector = document.getElementById('qualitySelector');
             
-            infoContainer.innerHTML = `
-                <div style="text-align: center; margin-bottom: 16px;">
-                    <img src="${data.thumbnail}" alt="Thumbnail" style="width: 100%; border-radius: 12px; margin-bottom: 12px;">
-                    <h4 style="color: var(--text); margin-bottom: 8px; font-size: 0.9rem;">${data.title}</h4>
-                    <p style="color: var(--muted); font-size: 0.75rem; margin-bottom: 4px;">By: ${data.author} (@${data.unique_id})</p>
-                    <p style="color: var(--muted); font-size: 0.75rem;">Duration: ${(data.duration / 1000).toFixed(2)} detik • Source: ${data.source}</p>
-                </div>
-            `;
+            // Set media information
+            if (data.thumbnail) {
+                thumbnail.src = data.thumbnail;
+                thumbnail.style.display = 'block';
+            }
             
-            let optionsHtml = '<h4 style="color: var(--text); margin-bottom: 12px; font-size: 0.9rem;">Available Downloads:</h4>';
+            title.textContent = data.title || 'Unknown Title';
+            author.textContent = data.author || '@unknown';
+            duration.textContent = formatDuration(data.duration);
+            resolution.textContent = data.resolution || '1920x1080';
+            size.textContent = data.size || '~10 MB';
             
-            data.medias.forEach((media, index) => {
-                const sizeMB = media.data_size ? ` • ${(media.data_size / 1024 / 1024).toFixed(2)} MB` : '';
-                const duration = media.duration ? ` • ${media.duration}s` : '';
-                const safeTitle = (data.title || 'download').replace(/[^a-z0-9]/gi, '_').substring(0, 50);
-                const qualitySafe = media.quality.replace(/[^a-z0-9]/gi, '_');
-                const filename = `${safeTitle}_${qualitySafe}.${media.extension}`;
-                
-                optionsHtml += `
-                    <div class="download-option">
-                        <div class="download-option-info">
-                            <h5>${media.type === 'video' ? 'Video' : 'Audio'} - ${media.quality}</h5>
-                            <p>${media.extension.toUpperCase()}${sizeMB}${duration}</p>
+            // Clear previous quality options
+            qualitySelector.innerHTML = '';
+            
+            // Add quality options based on available media
+            if (data.medias && Array.isArray(data.medias)) {
+                data.medias.forEach((media, index) => {
+                    const qualityOption = document.createElement('div');
+                    qualityOption.className = 'quality-option';
+                    
+                    const qualityName = media.quality || `Quality ${index + 1}`;
+                    const mediaSize = media.size ? formatFileSize(media.size) : '~10 MB';
+                    const mediaFormat = media.format || 'mp4';
+                    
+                    qualityOption.innerHTML = `
+                        <div class="quality-info">
+                            <div class="quality-name">${qualityName}</div>
+                            <div class="quality-details">
+                                <span>${mediaFormat.toUpperCase()}</span>
+                                <span>${mediaSize}</span>
+                                <span>${media.resolution || ''}</span>
+                            </div>
                         </div>
-                        <a href="${media.url}" download="${filename}" class="btn success" style="padding: 8px 12px; font-size: 0.75rem; text-decoration: none;">
+                        <a href="${media.url}" target="_blank" class="quality-action" download>
                             <i class="fas fa-download"></i> Download
                         </a>
+                    `;
+                    
+                    qualitySelector.appendChild(qualityOption);
+                });
+            } else {
+                // Fallback to single download option
+                const qualityOption = document.createElement('div');
+                qualityOption.className = 'quality-option';
+                
+                qualityOption.innerHTML = `
+                    <div class="quality-info">
+                        <div class="quality-name">Best Quality</div>
+                        <div class="quality-details">
+                            <span>MP4</span>
+                            <span>${data.size || '~10 MB'}</span>
+                            <span>${data.resolution || '1920x1080'}</span>
+                        </div>
+                    </div>
+                    <a href="${data.url || '#'}" target="_blank" class="quality-action" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                `;
+                
+                qualitySelector.appendChild(qualityOption);
+            }
+        }
+        
+        function displayMockDownloaderResult(url) {
+            const thumbnail = document.getElementById('downloaderThumbnail');
+            const title = document.getElementById('downloaderTitle');
+            const author = document.getElementById('downloaderAuthor');
+            const duration = document.getElementById('downloaderDuration');
+            const resolution = document.getElementById('downloaderResolution');
+            const size = document.getElementById('downloaderSize');
+            const qualitySelector = document.getElementById('qualitySelector');
+            
+            // Set mock data
+            thumbnail.src = 'https://via.placeholder.com/400x300/8b5cf6/ffffff?text=Thumbnail';
+            thumbnail.style.display = 'block';
+            
+            title.textContent = 'Demo Media - ' + new Date().toLocaleTimeString();
+            author.textContent = '@demo_user';
+            duration.textContent = '1:30';
+            resolution.textContent = '1920x1080';
+            size.textContent = '15.2 MB';
+            
+            // Clear previous quality options
+            qualitySelector.innerHTML = '';
+            
+            // Add mock quality options
+            const qualities = [
+                { name: 'HD 1080p', format: 'MP4', size: '15.2 MB', resolution: '1920x1080' },
+                { name: 'HD 720p', format: 'MP4', size: '8.7 MB', resolution: '1280x720' },
+                { name: 'SD 480p', format: 'MP4', size: '4.3 MB', resolution: '854x480' },
+                { name: 'Audio Only', format: 'MP3', size: '2.1 MB', resolution: 'Audio' }
+            ];
+            
+            qualities.forEach((quality, index) => {
+                const qualityOption = document.createElement('div');
+                qualityOption.className = 'quality-option';
+                
+                qualityOption.innerHTML = `
+                    <div class="quality-info">
+                        <div class="quality-name">${quality.name}</div>
+                        <div class="quality-details">
+                            <span>${quality.format}</span>
+                            <span>${quality.size}</span>
+                            <span>${quality.resolution}</span>
+                        </div>
+                    </div>
+                    <a href="#" class="quality-action" onclick="showStatus('Ini hanya demo. Di implementasi nyata, ini akan mendownload file.', 'success', 'downloaderStatus'); return false;">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                `;
+                
+                qualitySelector.appendChild(qualityOption);
+            });
+        }
+        
+        function formatDuration(ms) {
+            if (!ms) return '0:00';
+            
+            const seconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+        
+        function addToDownloadHistory(url, result) {
+            const historyItem = {
+                url: url,
+                title: result.title || 'Unknown',
+                date: new Date().toISOString(),
+                platform: currentPlatform
+            };
+            
+            downloadHistory.unshift(historyItem);
+            
+            // Keep only last 5 items
+            if (downloadHistory.length > 5) {
+                downloadHistory = downloadHistory.slice(0, 5);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
+            
+            // Update display
+            loadDownloadHistory();
+        }
+        
+        function loadDownloadHistory() {
+            const historyContainer = document.getElementById('downloadHistory');
+            
+            // Load from localStorage
+            const savedHistory = localStorage.getItem('downloadHistory');
+            if (savedHistory) {
+                downloadHistory = JSON.parse(savedHistory);
+            }
+            
+            if (downloadHistory.length === 0) {
+                historyContainer.innerHTML = '<p style="color: var(--muted); font-size: 0.8rem;">Belum ada riwayat download.</p>';
+                return;
+            }
+            
+            let historyHTML = '';
+            downloadHistory.forEach(item => {
+                const date = new Date(item.date);
+                const formattedDate = date.toLocaleDateString('id-ID', { 
+                    day: 'numeric', 
+                    month: 'short', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+                
+                historyHTML += `
+                    <div style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--glass-border);">
+                        <div style="font-size: 0.75rem; color: var(--text); margin-bottom: 2px;">
+                            ${item.title.substring(0, 40)}${item.title.length > 40 ? '...' : ''}
+                        </div>
+                        <div style="font-size: 0.65rem; color: var(--muted);">
+                            ${formattedDate} • ${item.platform}
+                        </div>
                     </div>
                 `;
             });
             
-            optionsContainer.innerHTML = optionsHtml;
+            historyContainer.innerHTML = historyHTML;
         }
         
         document.getElementById('downloaderClearBtn').addEventListener('click', function() {
             document.getElementById('downloaderUrl').value = '';
-            document.getElementById('downloadInfo').innerHTML = '';
-            document.getElementById('downloadOptions').innerHTML = '';
-            document.getElementById('downloaderResultArea').classList.remove('active');
+            document.getElementById('downloaderResult').classList.remove('active');
             showStatus('Berhasil direset!', 'success', 'downloaderStatus');
         });
         
-        // VPS Monitoring functions
-        function initializeVPSMonitoring() {
-            const monitoringGrid = document.getElementById('vpsMonitoringGrid');
+        // Website Monitoring functions
+        function initializeWebsiteMonitoring() {
+            const monitoringGrid = document.getElementById('websiteMonitoringGrid');
             monitoringGrid.innerHTML = '';
-           
-            vpsServers.forEach(server => {
-                const serverCard = createVPSCard(server);
-                monitoringGrid.appendChild(serverCard);
+            
+            // Create website cards
+            websites.forEach(website => {
+                const websiteCard = createWebsiteCard(website);
+                monitoringGrid.appendChild(websiteCard);
             });
             
-            updateServerInfoPanel();
+            // Update monitoring info panel
+            updateMonitoringInfoPanel();
             
-            autoRefreshVPSStatus();
+            // Auto-refresh website status
+            autoRefreshWebsiteStatus();
         }
         
-        function createVPSCard(server) {
+        function createWebsiteCard(website) {
             const card = document.createElement('div');
-            card.className = 'vps-card';
-            card.id = `vps-${server.id}`;
+            card.className = 'website-card';
+            card.id = `website-${website.id}`;
             
-            const statusClass = `status-${server.status}`;
-            const statusText = server.status === 'online' ? 'Online' : server.status === 'offline' ? 'Offline' : 'Loading';
+            const statusClass = `status-${website.status}`;
             
             card.innerHTML = `
-                <div class="vps-header">
-                    <div class="vps-name">
-                        <i class="fas fa-server"></i>
-                        ${server.name}
+                <div class="website-header">
+                    <div class="website-name">
+                        <i class="fas fa-globe"></i>
+                        ${website.name}
                     </div>
-                    <div class="vps-status ${statusClass}">
+                    <div class="website-status ${statusClass}">
                         <span class="status-indicator"></span>
-                        ${statusText}
+                        ${website.status === 'online' ? 'Online' : website.status === 'offline' ? 'Offline' : 'Slow'}
                     </div>
                 </div>
                 
-                <div class="vps-details">
-                    <div class="vps-specs">
-                        <div class="spec-item">
-                            <div class="spec-label">Location</div>
-                            <div class="spec-value">${server.location}</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-label">Provider</div>
-                            <div class="spec-value">${server.provider}</div>
-                        </div>
+                <div class="website-details">
+                    <div class="website-specs">
                         <div class="spec-item">
                             <div class="spec-label">Uptime</div>
-                            <div class="spec-value">${server.uptime}</div>
+                            <div class="spec-value">${website.uptime}%</div>
                         </div>
                         <div class="spec-item">
-                            <div class="spec-label">IP Address</div>
-                            <div class="spec-value" style="font-size: 0.75rem;">${server.ip}</div>
+                            <div class="spec-label">Response Time</div>
+                            <div class="spec-value">${website.responseTime}ms</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Load Time</div>
+                            <div class="spec-value">${website.loadTime}s</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Last Checked</div>
+                            <div class="spec-value">${website.lastChecked}</div>
                         </div>
                     </div>
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span>CPU Usage (${server.cpu.cores} Cores)</span>
-                            <span>${server.cpu.used}%</span>
+                            <span>Uptime (30 days)</span>
+                            <span>${website.uptime}%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill cpu-progress" style="width: ${server.cpu.used}%"></div>
+                            <div class="progress-fill uptime-progress" style="width: ${website.uptime}%"></div>
                         </div>
                     </div>
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span>RAM Usage</span>
-                            <span>${server.ram.used} / ${server.ram.total} ${server.ram.unit}</span>
+                            <span>Response Performance</span>
+                            <span>${website.responseTime}ms</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill ram-progress" style="width: ${(server.ram.used / server.ram.total) * 100}%"></div>
+                            <div class="progress-fill response-progress" style="width: ${Math.max(0, 100 - (website.responseTime / 5))}%"></div>
                         </div>
                     </div>
                     
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>Disk Usage</span>
-                            <span>${server.disk.used} / ${server.disk.total} ${server.disk.unit}</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill disk-progress" style="width: ${server.disk.used}%"></div>
-                        </div>
+                    <div style="font-size: 0.7rem; color: var(--muted); margin-top: 12px;">
+                        <i class="fas fa-info-circle"></i> ${website.description}
                     </div>
                 </div>
                 
-                <div class="vps-actions">
-                    <button class="action-btn restart" onclick="restartServer('${server.id}')">
-                        <i class="fas fa-redo"></i> Restart
+                <div class="website-actions">
+                    <button class="action-btn visit" onclick="visitWebsite('${website.url}')">
+                        <i class="fas fa-external-link-alt"></i> Visit
                     </button>
-                    <button class="action-btn stop" onclick="stopServer('${server.id}')">
-                        <i class="fas fa-power-off"></i> Stop
+                    <button class="action-btn ping" onclick="pingWebsite('${website.id}')">
+                        <i class="fas fa-sync-alt"></i> Ping Now
                     </button>
-                    <button class="action-btn ssh" onclick="connectSSH('${server.id}')">
-                        <i class="fas fa-terminal"></i> SSH
+                    <button class="action-btn details" onclick="showWebsiteDetails('${website.id}')">
+                        <i class="fas fa-chart-bar"></i> Details
                     </button>
                 </div>
             `;
@@ -2547,169 +2915,176 @@
             return card;
         }
         
-        function updateServerInfoPanel() {
-            const totalServers = vpsServers.length;
-            const onlineServers = vpsServers.filter(s => s.status === 'online').length;
-            const totalRAM = vpsServers.reduce((sum, server) => sum + server.ram.total, 0);
-            const totalStorage = vpsServers.reduce((sum, server) => sum + server.disk.total, 0);
-            const totalCPUCores = vpsServers.reduce((sum, server) => sum + server.cpu.cores, 0);
-            const locations = [...new Set(vpsServers.map(s => s.location))];
+        function updateMonitoringInfoPanel() {
+            const totalWebsites = websites.length;
+            const onlineWebsites = websites.filter(w => w.status === 'online').length;
+            const totalUptime = websites.reduce((sum, website) => sum + website.uptime, 0);
+            const avgUptime = (totalUptime / totalWebsites).toFixed(1);
+            const totalResponseTime = websites.reduce((sum, website) => sum + website.responseTime, 0);
+            const avgResponseTime = Math.round(totalResponseTime / totalWebsites);
             
-            document.getElementById('totalServers').textContent = `${totalServers} (${onlineServers} Online)`;
-            document.getElementById('averageUptime').textContent = `${(onlineServers / totalServers * 100).toFixed(1)}%`;
-            document.getElementById('totalRAM').textContent = `${totalRAM} GB`;
-            document.getElementById('totalStorage').textContent = `${totalStorage} GB`;
-            document.getElementById('totalCPUCores').textContent = totalCPUCores;
-            document.getElementById('serverLocations').textContent = `${locations.length} Countries`;
-        }
-        
-        function autoRefreshVPSStatus() {
-            vpsServers.forEach(server => {
-                if (server.status === 'loading') {
-                    setTimeout(() => {
-                        const randomStatus = Math.random() > 0.2 ? 'online' : 'offline';
-                        updateServerStatus(server.id, randomStatus);
-                    }, 2000 + Math.random() * 3000);
-                }
+            // Find nearest SSL expiry
+            const sslExpiries = websites.map(w => new Date(w.sslExpiry));
+            const nearestExpiry = new Date(Math.min(...sslExpiries));
+            const sslExpiryStr = nearestExpiry.toLocaleDateString('id-ID', { 
+                day: 'numeric', 
+                month: 'short', 
+                year: 'numeric' 
             });
             
+            document.getElementById('totalWebsites').textContent = `${totalWebsites} (${onlineWebsites} Online)`;
+            document.getElementById('averageUptime').textContent = `${avgUptime}%`;
+            document.getElementById('avgResponseTime').textContent = `${avgResponseTime}ms`;
+            document.getElementById('sslExpiry').textContent = sslExpiryStr;
+        }
+        
+        function autoRefreshWebsiteStatus() {
+            // Simulate status changes
             setInterval(() => {
-                vpsServers.forEach(server => {
-                    if (server.status === 'online') {
-                        const change = (Math.random() * 10 - 5);
-                        const newCpuUsage = Math.max(5, Math.min(95, server.cpu.used + change));
-                        server.cpu.used = Math.round(newCpuUsage);
+                websites.forEach(website => {
+                    // Randomly change status (for demo purposes)
+                    if (Math.random() > 0.9) {
+                        const statuses = ['online', 'offline', 'slow'];
+                        const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
                         
-                        const ramChange = (Math.random() * 0.5 - 0.25);
-                        server.ram.used = Math.max(0.5, Math.min(server.ram.total - 0.5, server.ram.used + ramChange));
-                       
-                        updateServerCard(server.id);
+                        if (website.status !== newStatus) {
+                            website.status = newStatus;
+                            updateWebsiteCard(website.id);
+                            updateMonitoringInfoPanel();
+                        }
+                    }
+                    
+                    // Randomly update response time
+                    if (Math.random() > 0.7) {
+                        const change = Math.random() * 50 - 25; // -25 to +25
+                        website.responseTime = Math.max(50, Math.min(500, website.responseTime + change));
+                        updateWebsiteCard(website.id);
                     }
                 });
-            }, 5000);
+            }, 10000); // Update every 10 seconds
         }
         
-        function updateServerStatus(serverId, newStatus) {
-            const server = vpsServers.find(s => s.id === serverId);
-            if (server) {
-                server.status = newStatus;
-                updateServerCard(serverId);
-                updateServerInfoPanel();
-            }
-        }
-        
-        function updateServerCard(serverId) {
-            const server = vpsServers.find(s => s.id === serverId);
-            if (!server) return;
+        function updateWebsiteCard(websiteId) {
+            const website = websites.find(w => w.id === websiteId);
+            if (!website) return;
             
-            const cardElement = document.getElementById(`vps-${serverId}`);
+            const cardElement = document.getElementById(`website-${websiteId}`);
             if (!cardElement) return;
             
-            const statusElement = cardElement.querySelector('.vps-status');
-            statusElement.className = `vps-status status-${server.status}`;
-            statusElement.innerHTML = `<span class="status-indicator"></span>${server.status === 'online' ? 'Online' : 'Offline'}`;
+            // Update status
+            const statusElement = cardElement.querySelector('.website-status');
+            statusElement.className = `website-status status-${website.status}`;
+            statusElement.innerHTML = `<span class="status-indicator"></span>${website.status === 'online' ? 'Online' : website.status === 'offline' ? 'Offline' : 'Slow'}`;
             
-            const cpuProgress = cardElement.querySelector('.cpu-progress');
-            const cpuLabel = cardElement.querySelector('.progress-label span:nth-child(2)');
-            cpuProgress.style.width = `${server.cpu.used}%`;
-            cpuLabel.textContent = `${server.cpu.used}%`;
-            
-            const ramProgress = cardElement.querySelector('.ram-progress');
-            const ramLabel = cardElement.querySelectorAll('.progress-label')[1].querySelector('span:nth-child(2)');
-            const ramPercentage = (server.ram.used / server.ram.total) * 100;
-            ramProgress.style.width = `${ramPercentage}%`;
-            ramLabel.textContent = `${server.ram.used.toFixed(1)} / ${server.ram.total} ${server.ram.unit}`;
-        }
-        
-        function restartServer(serverId) {
-            const server = vpsServers.find(s => s.id === serverId);
-            if (!server) return;
-            
-            showStatus(`Restarting ${server.name}...`, 'success', 'textStatus');
-            
-            server.status = 'loading';
-            updateServerCard(serverId);
-            
-            setTimeout(() => {
-                const success = Math.random() > 0.1; 
-                server.status = success ? 'online' : 'offline';
-                updateServerCard(serverId);
-                updateServerInfoPanel();
-                
-                if (success) {
-                    showStatus(`${server.name} restarted successfully!`, 'success', 'textStatus');
-                } else {
-                    showStatus(`${server.name} failed to restart!`, 'error', 'textStatus');
-                }
-            }, 3000);
-        }
-        
-        function stopServer(serverId) {
-            const server = vpsServers.find(s => s.id === serverId);
-            if (!server) return;
-            
-            if (server.status === 'offline') {
-                showStatus(`${server.name} is already stopped!`, 'error', 'textStatus');
-                return;
+            // Update specs
+            const specs = cardElement.querySelectorAll('.spec-value');
+            if (specs.length >= 4) {
+                specs[0].textContent = `${website.uptime}%`;
+                specs[1].textContent = `${Math.round(website.responseTime)}ms`;
+                specs[2].textContent = `${website.loadTime}s`;
             }
             
-            showStatus(`Stopping ${server.name}...`, 'success', 'textStatus');
+            // Update progress bars
+            const uptimeProgress = cardElement.querySelector('.uptime-progress');
+            uptimeProgress.style.width = `${website.uptime}%`;
             
-            server.status = 'loading';
-            updateServerCard(serverId);
+            const responseProgress = cardElement.querySelector('.response-progress');
+            responseProgress.style.width = `${Math.max(0, 100 - (website.responseTime / 5))}%`;
             
-            setTimeout(() => {
-                server.status = 'offline';
-                updateServerCard(serverId);
-                updateServerInfoPanel();
-                showStatus(`${server.name} stopped successfully!`, 'success', 'textStatus');
-            }, 2000);
+            // Update response time label
+            const responseLabel = cardElement.querySelectorAll('.progress-label')[1].querySelector('span:nth-child(2)');
+            responseLabel.textContent = `${Math.round(website.responseTime)}ms`;
         }
         
-        function connectSSH(serverId) {
-            const server = vpsServers.find(s => s.id === serverId);
-            if (!server) return;
+        function visitWebsite(url) {
+            window.open(url, '_blank');
+            showStatus(`Membuka ${url}`, 'success', 'textStatus');
+        }
+        
+        function pingWebsite(websiteId) {
+            const website = websites.find(w => w.id === websiteId);
+            if (!website) return;
             
-            if (server.status !== 'online') {
-                showStatus(`${server.name} is not online! Cannot connect via SSH.`, 'error', 'textStatus');
-                return;
+            showStatus(`Pinging ${website.name}...`, 'success', 'textStatus');
+            
+            // Simulate ping
+            website.lastChecked = 'Just now';
+            
+            // Random response time between 50-300ms
+            const newResponseTime = 50 + Math.random() * 250;
+            website.responseTime = newResponseTime;
+            
+            // Random status (mostly online)
+            if (Math.random() > 0.95) {
+                website.status = 'offline';
+            } else if (Math.random() > 0.8) {
+                website.status = 'slow';
+            } else {
+                website.status = 'online';
             }
             
-            showStatus(`Connecting to ${server.name} via SSH...`, 'success', 'textStatus');
+            updateWebsiteCard(websiteId);
+            updateMonitoringInfoPanel();
             
             setTimeout(() => {
-                const sshCommand = `ssh root@${server.ip}`;
-                showStatus(`SSH Command: ${sshCommand}`, 'success', 'textStatus');
-                
-                navigator.clipboard.writeText(sshCommand).then(() => {
-                    setTimeout(() => {
-                        showStatus('SSH command copied to clipboard!', 'success', 'textStatus');
-                    }, 1000);
-                });
-            }, 1000);
+                showStatus(`${website.name} responded in ${Math.round(newResponseTime)}ms`, 'success', 'textStatus');
+            }, 500);
         }
         
-        document.getElementById('refreshServersBtn').addEventListener('click', function() {
+        function showWebsiteDetails(websiteId) {
+            const website = websites.find(w => w.id === websiteId);
+            if (!website) return;
+            
+            showStatus(`Showing details for ${website.name}`, 'success', 'textStatus');
+            
+            // In a real implementation, this would show a modal with detailed analytics
+            const details = `
+                Website: ${website.name}
+                URL: ${website.url}
+                Status: ${website.status}
+                Uptime: ${website.uptime}%
+                Response Time: ${website.responseTime}ms
+                Load Time: ${website.loadTime}s
+                SSL Expiry: ${website.sslExpiry}
+                Description: ${website.description}
+            `;
+            
+            console.log('Website details:', details);
+        }
+        
+        // Refresh websites button
+        document.getElementById('refreshWebsitesBtn').addEventListener('click', function() {
             const btn = this;
             const originalText = btn.innerHTML;
             
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
             
+            // Simulate refresh
             setTimeout(() => {
-                vpsServers.forEach(server => {
-                    if (server.status === 'online') {
-                        server.cpu.used = Math.max(5, Math.min(95, server.cpu.used + (Math.random() * 6 - 3)));
-                        server.ram.used = Math.max(0.5, Math.min(server.ram.total - 0.5, server.ram.used + (Math.random() * 0.6 - 0.3)));
+                websites.forEach(website => {
+                    // Update last checked
+                    website.lastChecked = 'Just now';
+                    
+                    // Simulate new response times
+                    website.responseTime = 80 + Math.random() * 200;
+                    
+                    // Mostly stay online
+                    if (Math.random() > 0.98) {
+                        website.status = 'offline';
+                    } else if (Math.random() > 0.9) {
+                        website.status = 'slow';
+                    } else {
+                        website.status = 'online';
                     }
                 });
                 
-                initializeVPSMonitoring();
+                initializeWebsiteMonitoring();
                 
                 btn.disabled = false;
                 btn.innerHTML = originalText;
                 
-                showStatus('Server status refreshed!', 'success', 'textStatus');
+                showStatus('All websites refreshed!', 'success', 'textStatus');
             }, 1500);
         });
         
@@ -2737,35 +3112,28 @@
             document.getElementById('textInput').value = "Hello from KyyForseken Portfolio!";
             createSnowflakes();
             
+            // Keyboard shortcuts
             document.addEventListener('keydown', (e) => {
                 if (e.ctrlKey && e.key === 't') {
                     themeToggle.click();
                 }
             });
             
+            // Make sure content is scrollable
             document.body.style.overflowY = 'auto';
-            
             const content = document.querySelector('.content');
             if (content) {
                 content.style.overflowY = 'auto';
             }
             
+            // Load download history
+            loadDownloadHistory();
+            
+            // Initialize website monitoring if on tools tab
             if (document.getElementById('tools-tab').classList.contains('active')) {
-                initializeVPSMonitoring();
+                initializeWebsiteMonitoring();
             }
         });
-        
-        // Tambahkan fungsi untuk auto-download setelah generate
-        window.autoDownload = function(blob, filename) {
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = filename;
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(a.href);
-        };
     </script>
 </body>
 </html>
